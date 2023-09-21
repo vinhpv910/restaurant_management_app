@@ -6,7 +6,7 @@ class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
   void goTablesScreen(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed('tables_screen');
+    Navigator.of(ctx).pushNamed(TablesScreen.routeName);
   }
 
   @override

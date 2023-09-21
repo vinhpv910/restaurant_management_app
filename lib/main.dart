@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_management_app/screens/dishes_screen.dart';
 
+import '../screens/dishes_screen.dart';
 import '../screens/tables_screen.dart';
-import './screens/welcome_screen.dart';
+import '../screens/welcome_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,11 +11,15 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Restaurant Management', routes: {
-      '/': (ctx) => WelcomeScreen(),
-      'tables_screen': (ctx) => TablesScreen(),
-      'dishes_screen': (ctx) => DishesScreen(),
-    });
+    return MaterialApp(
+      title: 'Restaurant Management',
+      initialRoute: '/',
+      routes: {
+        '/': (ctx) => WelcomeScreen(),
+        TablesScreen.routeName: (ctx) => TablesScreen(),
+        DishesScreen.routeName: (ctx) => DishesScreen(),
+      },
+    );
   }
 }
 

@@ -13,7 +13,7 @@ List<Dish> mainDishesList = [
     name: 'Miếng Đùi Gà Quay',
     price: 74000,
     state: true,
-    image: 'assets/images/miengphilegaquay.jpg',
+    image: 'assets/images/1miengduigaquay.jpg',
   ),
   Dish(
     id: '3',

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+
 import '../screens/dishes_screen.dart';
+import '../models/my_table.dart';
 
 class TableItem extends StatefulWidget {
-  String name;
-  bool state;
+  MyTable table;
 
-  TableItem(this.name, this.state);
+  TableItem(this.table);
 
   @override
   State<TableItem> createState() => _TableItemState();
@@ -14,10 +15,8 @@ class TableItem extends StatefulWidget {
 class _TableItemState extends State<TableItem> {
   void goDishesScreen(BuildContext ctx) {
     Navigator.of(context).pushNamed(
-      'dishes_screen',
-      arguments: {
-        'name': widget.name,
-      },
+      DishesScreen.routeName,
+      arguments: widget.table,
     );
   }
 
@@ -39,7 +38,7 @@ class _TableItemState extends State<TableItem> {
               ),
               Expanded(
                 child: Text(
-                  widget.name,
+                  widget.table.name,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -50,7 +49,8 @@ class _TableItemState extends State<TableItem> {
                 padding: EdgeInsets.all(10),
                 child: CircleAvatar(
                   radius: 8,
-                  backgroundColor: widget.state ? Colors.green : Colors.red,
+                  backgroundColor:
+                      widget.table.state ? Colors.green : Colors.red,
                 ),
               ),
             ],

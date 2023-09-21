@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
 
-class DishItem extends StatefulWidget {
-  final String name;
-  final double price;
-  final String image;
+import '../models/dish.dart';
+import '../models/my_table.dart';
 
-  DishItem(this.name, this.price, this.image);
+class DishItem extends StatelessWidget {
+  Dish dish;
+  MyTable table;
+  Function increaseQuantity;
+  Function decreaseQuantity;
+  Function totalBill;
 
-  @override
-  State<DishItem> createState() => _DishItemState();
-}
-
-class _DishItemState extends State<DishItem> {
-  final int quantity = 0;
+  DishItem(
+    this.dish,
+    this.table,
+    this.increaseQuantity,
+    this.decreaseQuantity,
+    this.totalBill,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,7 @@ class _DishItemState extends State<DishItem> {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Image.asset(
-              widget.image,
+              dish.image,
               width: 48 * 3,
               height: 39 * 3,
             ),
@@ -46,7 +50,7 @@ class _DishItemState extends State<DishItem> {
             children: [
               Expanded(
                 child: Text(
-                  widget.name,
+                  dish.name,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -56,7 +60,7 @@ class _DishItemState extends State<DishItem> {
               Row(
                 children: [
                   Text(
-                    widget.price.toStringAsFixed(0) + 'đ',
+                    dish.price.toStringAsFixed(0) + 'đ',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -66,14 +70,20 @@ class _DishItemState extends State<DishItem> {
                     width: 30,
                   ),
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () => decreaseQuantity(
+                      dish.id,
+                      table,
+                    ),
                     child: Text('-'),
                   ),
                   Padding(
                       padding: EdgeInsets.all(10),
-                      child: Text(quantity.toString())),
+                      child: Text(dish.quantity.toString())),
                   OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () => increaseQuantity(
+                      dish.id,
+                      table,
+                    ),
                     child: Text('+'),
                   ),
                 ],

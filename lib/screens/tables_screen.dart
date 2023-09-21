@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../available_list/table_list.dart';
+import '../models/my_table.dart';
 import './table_item.dart';
 
 class TablesScreen extends StatelessWidget {
+  static const routeName = 'tables_screen';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +22,7 @@ class TablesScreen extends StatelessWidget {
           crossAxisSpacing: 20,
         ),
         children: tableList.map((index) {
-          return TableItem(index.name, index.state);
+          return TableItem(index);
         }).toList(),
       ),
     );
